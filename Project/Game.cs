@@ -71,17 +71,35 @@ namespace CastleGrimtol.Project
                 var choice = Input.Split(' ');
                 var command = choice[0];
                 var option = choice[1];
-                if (option == "n")
+                if (command == "go")
                 {
-                    Move("north");
+                    if (option == "n" || option == "north")
+                    {
+                        Move("north");
+                    }
+                    if (option == "s" || option == "south")
+                    {
+                        Move("south");
+                    }
                 }
-                if (option == "s")
-                {
-                    Move("south");
-                }
-            }else
+            }else if(Input == "look")
             {
-               Console.WriteLine("I don't know what you want from me. Type \"Help\" to see a list of commands.");
+                Console.WriteLine(CurrentRoom.Description);
+            }else if(Input == "help")
+            {
+                Console.Clear();
+                Console.WriteLine(@"
+                Here is a list of Commands:
+                Use,
+                Help,
+                Go,
+                Take,
+                Quit
+                ");
+            }
+            else
+            {
+                Console.WriteLine("I don't know what you want from me. Type \"Help\" to see a list of commands.");
             }
         }
     }
