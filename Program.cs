@@ -14,16 +14,12 @@ namespace CastleGrimtol
             while (playing)
             {
                 Console.WriteLine(game.CurrentRoom.Description);
-                if (game.GetUserInput().Contains(" "))
+                var Input = game.GetUserInput();
+                if (Input.Contains(" "))
                 {
-                    var choice = game.GetUserInput().Split(' ');
+                    var choice = Input.Split(' ');
                     var command = choice[0];
                     var option = choice[1];
-                    if (command == "q" || command == "quit")
-                    {
-                        playing = false;
-                        continue;
-                    }
                     if (option == "n")
                     {
                         game.Move("north");
@@ -32,6 +28,11 @@ namespace CastleGrimtol
                     {
                         game.Move("south");
                     }
+                }
+                else if (Input == "q" || Input == "quit")
+                {
+                    playing = false;
+                    continue;
                 }
                 else
                 {
