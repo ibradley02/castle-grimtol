@@ -6,6 +6,7 @@ namespace CastleGrimtol.Project
     public class Game : IGame
     {
         public bool Playing;
+        public string Response;
         public Room CurrentRoom { get; set; }
         public Player CurrentPlayer { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
         public List<Room> Rooms { get; set; }
@@ -62,6 +63,26 @@ namespace CastleGrimtol.Project
         {
             Console.WriteLine("What would you like to do: ");
             return Console.ReadLine();
+        }
+        public void HandleUserInput(string Input)
+        {
+            if (Input.Contains(" "))
+            {
+                var choice = Input.Split(' ');
+                var command = choice[0];
+                var option = choice[1];
+                if (option == "n")
+                {
+                    Move("north");
+                }
+                if (option == "s")
+                {
+                    Move("south");
+                }
+            }else
+            {
+               Console.WriteLine("I don't know what you want from me. Type \"Help\" to see a list of commands.");
+            }
         }
     }
 }

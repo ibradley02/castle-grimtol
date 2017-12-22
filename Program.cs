@@ -15,28 +15,14 @@ namespace CastleGrimtol
             {
                 Console.WriteLine(game.CurrentRoom.Description);
                 var Input = game.GetUserInput();
-                if (Input.Contains(" "))
-                {
-                    var choice = Input.Split(' ');
-                    var command = choice[0];
-                    var option = choice[1];
-                    if (option == "n")
-                    {
-                        game.Move("north");
-                    }
-                    if (option == "s")
-                    {
-                        game.Move("south");
-                    }
-                }
-                else if (Input == "q" || Input == "quit")
+                if (Input == "q" || Input == "quit")
                 {
                     playing = false;
                     continue;
                 }
                 else
                 {
-                    Console.WriteLine("I don't know what you want from me. Type \"Help\" to see a list of commands.");
+                    game.HandleUserInput(Input);
                 }
             }
         }
