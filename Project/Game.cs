@@ -22,7 +22,7 @@ namespace CastleGrimtol.Project
 
             Room room1 = new Room()
             {
-                Description = "This is room 1",
+                Description = "You find yourself in a canyon that exits ahead of you to the North and comes to a dead end farther south. The canyon is very orange. The ground is very orange. The dust is very orange. You would be blinded by the sheer vastness of orange if not for your highly calibrated and expensive orange sensors fitted to you by the C.A.W.I.A.E., but somehow sorrounded by all this orange you find yourself feeling blue. You do not have a blue sensor so you disregard this useless feeling. ",
                 Name = "Room 1",
                 // Items = new List<Item>(),
                 Exits = new Dictionary<string, Room>()
