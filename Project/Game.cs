@@ -8,7 +8,7 @@ namespace CastleGrimtol.Project
         public bool Playing;
         public string Response;
         public Room CurrentRoom { get; set; }
-        public Player CurrentPlayer { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public Player CurrentPlayer { get; set; }
         public List<Room> Rooms { get; set; }
 
         public void Reset()
@@ -33,12 +33,10 @@ namespace CastleGrimtol.Project
                 Name = "Room 2",
                 // Items = new List<Item>(),
                 Exits = new Dictionary<string, Room>()
-
             };
 
             room1.Exits.Add("north", room2);
             room2.Exits.Add("south", room1);
-
 
             CurrentRoom = room1;
         }
@@ -77,29 +75,40 @@ namespace CastleGrimtol.Project
                     {
                         Move("north");
                     }
-                    if (option == "s" || option == "south")
+                    else if (option == "s" || option == "south")
                     {
                         Move("south");
                     }
+                    else if (option == "w" || option == "west")
+                    {
+                        Move("west");
+                    }
+                    else
+                    {
+                        Move("east");
+                    }
                 }
-            }else if(Input == "look")
+            }
+            else if (Input == "look")
             {
                 Console.WriteLine(CurrentRoom.Description);
-            }else if(Input == "help")
+            }
+            else if (Input == "help")
             {
                 Console.Clear();
-                Console.WriteLine(@"
-                Here is a list of Commands:
-                Use,
+                Console.WriteLine(@"Here is a list of Commands:
                 Help,
-                Go,
-                Take,
+                Look,
+                Use <item>,
+                Go <direction>,
+                Inspect <item>,
+                Take <item>,
                 Quit
                 ");
             }
             else
             {
-                Console.WriteLine("I don't know what you want from me. Type \"Help\" to see a list of commands.");
+                Console.WriteLine("Command not recognized. Type \"Help\" to see a list of commands.");
             }
         }
     }
