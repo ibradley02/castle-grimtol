@@ -14,7 +14,7 @@ namespace CastleGrimtol.Project
 
         public void Reset()
         {
-
+            
         }
 
         public void Setup()
@@ -133,8 +133,7 @@ namespace CastleGrimtol.Project
                 }
             }
             else if (Input == "scan")
-            {
-                WordWrap("\n" + CurrentRoom.Description);
+            {                
             }
             else if (Input == "help")
             {
