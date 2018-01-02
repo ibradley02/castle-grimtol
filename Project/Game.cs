@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace CastleGrimtol.Project
 {
@@ -22,21 +23,40 @@ namespace CastleGrimtol.Project
 
             Room room1 = new Room()
             {
-                Description = "You find yourself in a canyon that exits ahead of you to the North and comes to a dead end farther south. The canyon is very orange. The ground is very orange. The dust is very orange. You would be blinded by the sheer vastness of orange if not for your highly calibrated and expensive orange sensors fitted to you by the C.A.W.I.A.E., but somehow sorrounded by all this orange you find yourself feeling blue. You do not have a blue sensor so you disregard this useless feeling. ",
-                Name = "Room 1",
+                Description = "You find yourself in a canyon that exits ahead of you to the North and comes to a dead end farther south. The canyon is very orange. The ground is very orange. The dust is very orange. You would be blinded by the sheer vastness of orange if not for your highly calibrated and expensive orange sensors fitted to you by the C.A.W.I.A.E., but somehow sorrounded by all this orange you find yourself feeling blue. You do not have a blue sensor so you disregard this feeling. ",
+                Name = "Orange Canyon",
                 // Items = new List<Item>(),
                 Exits = new Dictionary<string, Room>()
             };
             Room room2 = new Room()
             {
-                Description = "This is room 2",
-                Name = "Room 2",
+                Description = "The orange canyon slowly drops off in elevation until you find yourself at the begining of a vast orange plane extending ahead of you to the North, East, and West. Crossing would be quite difficult if you were not designed specifically to cross martian planes. It will be quite easy for you. Of this you are nearly robot certain.",
+                Name = "Orange Plane",
                 // Items = new List<Item>(),
+                Exits = new Dictionary<string, Room>()
+            };
+
+            Room room3 = new Room()
+            {
+                Description = "The orange trench in front of you is quite deep and quite orange.",
+                Name = "Orange Trench",
+                // Items = new List<Item>(),
+                Exits = new Dictionary<string, Room>()
+            };
+
+            Room room4 = new Room()
+            {
+                Description = "The orange here has a faint musty smell of orange.",
+                Name = "Orange Lake",
                 Exits = new Dictionary<string, Room>()
             };
 
             room1.Exits.Add("north", room2);
             room2.Exits.Add("south", room1);
+            room2.Exits.Add("east", room3);
+            room2.Exits.Add("west", room4);
+            room3.Exits.Add("west", room2);
+            room4.Exits.Add("east", room2);
 
             CurrentRoom = room1;
         }
@@ -49,7 +69,7 @@ namespace CastleGrimtol.Project
             }
             else
             {
-                Console.WriteLine("You can't do that.");
+                Console.WriteLine("\nError: Sensors detect no viable route in that direction. Please recalculate.");
             }
         }
 
@@ -59,8 +79,31 @@ namespace CastleGrimtol.Project
         }
         public string GetUserInput()
         {
-            Console.WriteLine("What would you like to do: ");
-            return Console.ReadLine();
+        Console.Write("\nWhat is your directive:");
+        return Console.ReadLine();
+        }
+        public void WordWrap(string text)
+        {
+            String[] words = text.Split(' ');
+            StringBuilder buffer = new StringBuilder();
+
+            foreach (String word in words)
+            {
+                buffer.Append(word);
+
+                if (buffer.Length >= 80)
+                {
+                    String line = buffer.ToString().Substring(0, buffer.Length - word.Length);
+                    Console.WriteLine(line);
+                    buffer.Clear();
+                    buffer.Append(word);
+                }
+
+                buffer.Append(" ");
+
+            }
+
+            Console.WriteLine(buffer.ToString());
         }
         public void HandleUserInput(string Input)
         {
@@ -89,26 +132,27 @@ namespace CastleGrimtol.Project
                     }
                 }
             }
-            else if (Input == "look")
+            else if (Input == "scan")
             {
-                Console.WriteLine(CurrentRoom.Description);
+                WordWrap("\n" + CurrentRoom.Description);
             }
             else if (Input == "help")
             {
                 Console.Clear();
-                Console.WriteLine(@"Here is a list of Commands:
-                Help,
-                Look,
-                Use <item>,
-                Go <direction>,
-                Inspect <item>,
-                Take <item>,
-                Quit
-                ");
+                WordWrap(@"
+Here is a List of Executable Commands:
+Help,
+Scan,
+Use <item>,
+Go <direction>,
+Inspect <item>,
+Take <item>,
+Quit
+");
             }
             else
             {
-                Console.WriteLine("Command not recognized. Type \"Help\" to see a list of commands.");
+                Console.WriteLine("\nCommand not recognized. Type \"Help\" to see a list of commands.");
             }
         }
     }
