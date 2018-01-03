@@ -6,15 +6,15 @@ namespace CastleGrimtol.Project
 {
     public class Game : IGame
     {
-        public bool Playing;
         public string Response;
+        public bool Playing { get; set; }
         public Room CurrentRoom { get; set; }
         public Player CurrentPlayer { get; set; }
         public List<Room> Rooms { get; set; }
 
         public void Reset()
         {
-
+            Playing = true;
         }
         public void Setup()
         {
@@ -100,9 +100,6 @@ namespace CastleGrimtol.Project
             room6.Exits.Add("east", room8);
             room7.Exits.Add("south", room3);
             room7.Exits.Add("west", room8);
-            room8.Exits.Add("south", room5);
-            room8.Exits.Add("east", room7);
-            room8.Exits.Add("west", room6);
 
             CurrentRoom = room1;
         }
@@ -188,12 +185,20 @@ namespace CastleGrimtol.Project
                     Console.ResetColor();
                 }
             }
-            // else if ((Input == "y" || Input == "yes") && CurrentRoom == room6)
-            // {
-
-            // }
             else if (Input == "scan")
             {
+            }
+            else if (Input == "take" && CurrentRoom.Items != null)
+            {
+
+            }
+            else if (Input == "y" || Input == "yes")
+            {
+                Reset();
+            }
+            else if (Input == "n" || Input == "no")
+            {
+                Playing = false;
             }
             else if (Input == "inventory")
             {
