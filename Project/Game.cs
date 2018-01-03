@@ -38,7 +38,7 @@ namespace CastleGrimtol.Project
 
             Room room3 = new Room()
             {
-                Description = "The orange trench in front of you is quite deep and quite orange.",
+                Description = "The desert seems to end in front of you. Split down the center with a long deep trench. The orange trench in front of you is quite deep and quite orange. It may be possible for you to jump across although the C.A.W.I.A.E. did not fit you with the necessary instruments to determine your success.",
                 Name = "Orange Trench",
                 // Items = new List<Item>(),
                 Exits = new Dictionary<string, Room>()
@@ -46,8 +46,36 @@ namespace CastleGrimtol.Project
 
             Room room4 = new Room()
             {
-                Description = "The orange here has a faint musty smell of orange.",
+                Description = "You travel into a basin with orange Mountains to your East and West. The orange here has a faint musty smell of orange. You notice the orange sand of the desert has become a chalky orange salt. This indicates there was likely water here at some point. Collecting a sample may prove valuable to the C.A.W.I.A.E. To the North is an outcropping of rocks which your sensors indicate may contain a cave. Your sensors also indicate this cave is orange.",
                 Name = "Orange Lake",
+                Exits = new Dictionary<string, Room>()
+            };
+
+            Room room5 = new Room()
+            {
+                Description = "After many unremarkable hours crossing the desert the orange around you starts to break, lifting itself to the heavens, forming into a grand orange Mountain. Traversing this mountain will likely take several sols and has no garuntee of success.",
+                Name = "Orange Mountain",
+                Exits = new Dictionary<string, Room>()
+            };
+
+            Room room6 = new Room()
+            {
+                Description = "1",
+                Name = "The Orange Cave",
+                Exits = new Dictionary<string, Room>()
+            };
+
+            Room room7 = new Room()
+            {
+                Description = "2",
+                Name = "The Orange Trench pt. 2",
+                Exits = new Dictionary<string, Room>()
+            };
+
+            Room room8 = new Room()
+            {
+                Description = "The orange Door",
+                Name = "Orange Door",
                 Exits = new Dictionary<string, Room>()
             };
 
@@ -55,8 +83,21 @@ namespace CastleGrimtol.Project
             room2.Exits.Add("south", room1);
             room2.Exits.Add("east", room3);
             room2.Exits.Add("west", room4);
+            room2.Exits.Add("north", room5);
             room3.Exits.Add("west", room2);
+            room3.Exits.Add("north", room7);
+            room4.Exits.Add("north", room6);
             room4.Exits.Add("east", room2);
+            room5.Exits.Add("south", room2);
+            room5.Exits.Add("north", room8);
+            room6.Exits.Add("south", room4);
+            room6.Exits.Add("east", room8);
+            room7.Exits.Add("south", room3);
+            room7.Exits.Add("west", room8);
+            room8.Exits.Add("south", room5);
+            room8.Exits.Add("east", room7);
+            room8.Exits.Add("west", room6);
+
 
             CurrentRoom = room1;
         }
@@ -69,7 +110,9 @@ namespace CastleGrimtol.Project
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nError: Sensors detect no viable route in that direction. Please recalculate.");
+                Console.ResetColor();
             }
         }
 
@@ -79,7 +122,9 @@ namespace CastleGrimtol.Project
         }
         public string GetUserInput()
         {
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
         Console.Write("\nWhat is your directive:");
+        Console.ResetColor();
         return Console.ReadLine();
         }
         public void WordWrap(string text)
@@ -138,20 +183,24 @@ namespace CastleGrimtol.Project
             else if (Input == "help")
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 WordWrap(@"
 Here is a List of Executable Commands:
 Help,
 Scan,
 Use <item>,
-Go <direction>,
+Go,
 Inspect <item>,
 Take <item>,
 Quit
 ");
+                Console.ResetColor();
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("\nCommand not recognized. Type \"Help\" to see a list of commands.");
+                Console.ResetColor();
             }
         }
     }
