@@ -10,7 +10,8 @@ namespace CastleGrimtol.Project
         public string Name { get; set; }
         public string Description { get; set; }    
 
-        public Dictionary<string, Room> Exits { get; set; }    
+        public Dictionary<string, Room> Exits { get; set; }
+        public List<Item> Items { get; set; }
 
         void IRoom.UseItem(Item item)
         {
