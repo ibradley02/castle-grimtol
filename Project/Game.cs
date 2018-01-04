@@ -60,7 +60,7 @@ namespace CastleGrimtol.Project
 
             Room room4 = new Room()
             {
-                Description = "You travel into a basin with orange Mountains to your East and West. The orange here has a faint musty smell of orange. You notice the orange sand of the desert has become a chalky orange salt. This indicates there was likely water here at some point. Collecting a sample may prove valuable to the C.A.W.I.A.E. To the North is an outcropping of rocks which your sensors indicate may contain a cave. Your sensors also indicate this cave is orange.",
+                Description = "You travel into a basin with orange Mountains to your East and West. The orange here has a faint musty smell of orange. You notice the orange sand of the desert has become a chalky orange salt. This indicates there was likely water here at some point. Collecting a sample may prove valuable to the C.A.W.I.A.E. The only route is back the way you came.",
                 Name = "The Orange Lake",
                 Items = new List<Item>(),
                 Exits = new Dictionary<string, Room>()
