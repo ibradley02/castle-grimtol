@@ -9,6 +9,7 @@ namespace CastleGrimtol.Project
     {
         public string Response;
         public bool Playing { get; set; }
+        public bool FirstTime { get; set; }
         public Room CurrentRoom { get; set; }
         public Player CurrentPlayer { get; set; }
         public List<Room> Rooms { get; set; }
@@ -19,7 +20,10 @@ namespace CastleGrimtol.Project
             var answer = Console.ReadLine();
             if (answer == "y" || answer == "yes")
             {
+                Console.Clear();
                 Playing = true;
+                FirstTime = true;
+                Setup();
             }
             else
             {
