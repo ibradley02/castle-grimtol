@@ -142,6 +142,7 @@ namespace CastleGrimtol.Project
             if (CurrentRoom.Exits.ContainsKey(direction))
             {
                 CurrentRoom = CurrentRoom.Exits[direction];
+                CurrentPlayer.Time--;
             }
             else
             {
@@ -216,7 +217,7 @@ namespace CastleGrimtol.Project
         public string GetUserInput()
         {
             Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.Write("\nWhat is your directive:");
+            Console.Write($"\n({CurrentPlayer.Time} Sols). What is your directive:");
             Console.ResetColor();
             return Console.ReadLine();
         }
@@ -245,69 +246,72 @@ namespace CastleGrimtol.Project
         }
         public void HandleUserInput(string Input)
         {
-            if (Input.Contains(" "))
+            if (CurrentPlayer.Time > 0)
             {
-                var choice = Input.Split(' ');
-                var command = choice[0];
-                var option = choice[1];
-                if (command == "go")
+
+                if (Input.Contains(" "))
                 {
-                    if (option == "n" || option == "north")
+                    var choice = Input.Split(' ');
+                    var command = choice[0];
+                    var option = choice[1];
+                    if (command == "go")
                     {
-                        Move("north");
+                        if (option == "n" || option == "north")
+                        {
+                            Move("north");
+                        }
+                        else if (option == "s" || option == "south")
+                        {
+                            Move("south");
+                        }
+                        else if (option == "w" || option == "west")
+                        {
+                            Move("west");
+                        }
+                        else
+                        {
+                            Move("east");
+                        }
                     }
-                    else if (option == "s" || option == "south")
+                    else if (command == "take")
                     {
-                        Move("south");
+                        TakeItem(option);
                     }
-                    else if (option == "w" || option == "west")
+                    else if (command == "use")
                     {
-                        Move("west");
+                        UseItem(option);
                     }
                     else
                     {
-                        Move("east");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("\nCommand not recognized. Type \"Help\" to see a list of commands.");
+                        Console.ResetColor();
                     }
                 }
-                else if (command == "take")
+                else if (Input == "scan")
                 {
-                    TakeItem(option);
                 }
-                else if (command == "use")
+                else if (Input == "take" && CurrentRoom.Items != null)
                 {
-                    UseItem(option);
-                }
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("\nCommand not recognized. Type \"Help\" to see a list of commands.");
-                    Console.ResetColor();
-                }
-            }
-            else if (Input == "scan")
-            {
-            }
-            else if (Input == "take" && CurrentRoom.Items != null)
-            {
 
-            }
-            else if (Input == "y" || Input == "yes")
-            {
-                Reset();
-            }
-            else if (Input == "n" || Input == "no")
-            {
-                Playing = false;
-            }
-            else if (Input == "inventory")
-            {
-                UserInventory();
-            }
-            else if (Input == "help")
-            {
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                WordWrap(@"
+                }
+                else if (Input == "y" || Input == "yes")
+                {
+                    Reset();
+                }
+                else if (Input == "n" || Input == "no")
+                {
+                    Playing = false;
+                }
+                else if (Input == "inventory")
+                {
+                    UserInventory();
+                }
+                else if (Input == "help")
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    WordWrap(@"
 Here is a List of Executable Commands:
 Help,
 Scan,
@@ -318,12 +322,19 @@ Inventory,
 Reset,
 Quit
 ");
-                Console.ResetColor();
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("\nCommand not recognized. Type \"Help\" to see a list of commands.");
+                    Console.ResetColor();
+                }
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("\nCommand not recognized. Type \"Help\" to see a list of commands.");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nYou have run out of time and been decommisioned. Type reset to play again. Quit to exit.");
                 Console.ResetColor();
             }
         }

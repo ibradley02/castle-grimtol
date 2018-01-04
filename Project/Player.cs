@@ -9,7 +9,7 @@ namespace CastleGrimtol.Project
         public List<Item> Inventory { get; set; }
         public Player()
         {
-            Time = 0;
+            Time = 5;
             Inventory = new List<Item>();
         }
     }
