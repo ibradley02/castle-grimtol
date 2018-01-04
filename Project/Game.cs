@@ -22,7 +22,7 @@ namespace CastleGrimtol.Project
 
             Room room1 = new Room()
             {
-                Description = "There is a canyon that exits ahead of you to the North and comes to a dead end farther south. The canyon is very orange. The ground is very orange. The dust is very orange. You would be blinded by the sheer vastness of orange if not for your highly calibrated and expensive orange sensors fitted to you by the M.A.R.S., but somehow surrounded by all this orange you find yourself feeling blue. You do not have a blue sensor so you disregard this feeling. ",
+                Description = "You are located in a canyon that exits ahead of you to the North and comes to a dead end farther south. The canyon is very orange. The ground is very orange. The dust is very orange. You would be blinded by the sheer vastness of orange if not for your highly calibrated and expensive orange sensors fitted to you by the M.A.R.S., but somehow surrounded by all this orange you find yourself feeling blue. You do not have a blue sensor so you disregard this feeling. ",
                 Name = "The Orange Canyon",
                 Exits = new Dictionary<string, Room>()
             };
@@ -71,7 +71,7 @@ namespace CastleGrimtol.Project
 
             Room room8 = new Room()
             {
-                Description = "As the grand orange door swings open on its hinges you are basked in the glow of robotic reverence for your heroic actions documenting mars. Okay, well not really, however you do find the rendezvous point behind the doors and the M.A.R.S. rates your mission effectiveness at 97% which is actually quite bad for a robot, but hey at least you won't be decommissioned today.",
+                Description = "As the grand orange door swings open on its hinges you are basked in the glow of robotic reverence for your heroic actions documenting mars. Okay, well not really, however you do find the rendezvous point behind the doors and the M.A.R.S. rates your mission effectiveness at 97% which is actually quite bad for a robot, but hey at least you won't be decommissioned today. \n Type Reset to play again.",
                 Name = "The Orange Door",
                 Exits = new Dictionary<string, Room>()
             };
@@ -218,6 +218,7 @@ Go,
 Use,
 Take,
 Inventory,
+Reset,
 Quit
 ");
                 Console.ResetColor();
