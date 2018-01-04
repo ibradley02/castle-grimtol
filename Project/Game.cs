@@ -22,20 +22,20 @@ namespace CastleGrimtol.Project
 
             Room room1 = new Room()
             {
-                Description = "You find yourself in a canyon that exits ahead of you to the North and comes to a dead end farther south. The canyon is very orange. The ground is very orange. The dust is very orange. You would be blinded by the sheer vastness of orange if not for your highly calibrated and expensive orange sensors fitted to you by the C.A.W.I.A.E., but somehow sorrounded by all this orange you find yourself feeling blue. You do not have a blue sensor so you disregard this feeling. ",
+                Description = "There is a canyon that exits ahead of you to the North and comes to a dead end farther south. The canyon is very orange. The ground is very orange. The dust is very orange. You would be blinded by the sheer vastness of orange if not for your highly calibrated and expensive orange sensors fitted to you by the M.A.R.S., but somehow surrounded by all this orange you find yourself feeling blue. You do not have a blue sensor so you disregard this feeling. ",
                 Name = "The Orange Canyon",
                 Exits = new Dictionary<string, Room>()
             };
             Room room2 = new Room()
             {
-                Description = "The orange canyon slowly drops off in elevation until you find yourself at the beginning of a vast orange plane extending ahead of you to the North, East, and West. Crossing would be quite difficult if you were not designed specifically to cross martian planes. It will be quite easy for you. Of this you are nearly robot certain.",
+                Description = "The canyon slowly drops off on either side until a vast orange desert extends ahead of you to the North, East, and West. Sensors detect significant elevation changes to the North. The rendezvous point was North of here, but the M.A.R.S. did not design your rover for traversing mountains... ",
                 Name = "The Orange Desert",
                 Exits = new Dictionary<string, Room>()
             };
 
             Room room3 = new Room()
             {
-                Description = "The desert seems to end in front of you. Split down the center with a long deep trench. The orange trench in front of you is quite deep and quite orange. It may be possible for you to jump across although the C.A.W.I.A.E. did not fit you with the necessary instruments to determine your success.",
+                Description = "After many miles of travel the Mountain range to the North turns to desert. Sensors indicate passage to the rendezvous may be possible without crossing the Mountain now.",
                 Name = "The Orange Trench",
                 Exits = new Dictionary<string, Room>()
             };
@@ -57,21 +57,21 @@ namespace CastleGrimtol.Project
 
             Room room6 = new Room()
             {
-                Description = "Your sensors indicate the tempature to have dropped significantly upon entry into the orange cavern. Even the cold here has an orange sensation to it. As you continue you come across large orange shapes. On closer inspection the shapes form into orange beings of light, positivity, and goodness. The orange martians emit such a powerful force of altruistic wellness that it can be felt even without the requisite sensors from the C.A.W.I.A.E. The C.A.W.I.A.E. has strict protocols for encountering martian life. Would you like to initiate the protocol? (Y/N)",
+                Description = "Sensors indicate the temperature to have dropped significantly upon entry into the orange cavern. Even the cold here has an orange sensation to it. Large orange shapes seem to fill the cavern. On closer inspection the shapes form into orange beings of light, positivity, and martian prosperity. The orange martians emit such a powerful force of altruistic wellness that it can be felt even without the requisite sensors from the M.A.R.S. The M.A.R.S. has strict protocols for encountering martian life. Would you like to initiate the protocol? (Y/N)",
                 Name = "The Orange Cave",
                 Exits = new Dictionary<string, Room>()
             };
 
             Room room7 = new Room()
             {
-                Description = "In a feat of pure robotic athletics your rover careens over the trench and lands smoothly on the other side. Your rover skids to a stop facing west in front of a large and ominous orange door. ",
+                Description = "In a feat of pure robotic athletics the rover careens over the trench and lands smoothly on the other side. the rover skids to a stop facing west in front of a large and ominous orange door. ",
                 Name = "The Orange Trench pt. 2",
                 Exits = new Dictionary<string, Room>()
             };
 
             Room room8 = new Room()
             {
-                Description = "As the grand orange door swings open on its hinges you are basked in the glow of robotic reverance for your heroic actions traveling mars. Okay, well not really, however you do find the rendevous point behind the doors and the C.A.W.I.A.E. rates your mission effectiveness at 97% which is actually quite bad for a robot, but hey at least you won't be decommisioned today. Would you like to play again? (Y/N)",
+                Description = "As the grand orange door swings open on its hinges you are basked in the glow of robotic reverence for your heroic actions documenting mars. Okay, well not really, however you do find the rendezvous point behind the doors and the M.A.R.S. rates your mission effectiveness at 97% which is actually quite bad for a robot, but hey at least you won't be decommissioned today.",
                 Name = "The Orange Door",
                 Exits = new Dictionary<string, Room>()
             };
