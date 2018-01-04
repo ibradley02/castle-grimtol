@@ -13,6 +13,11 @@ namespace CastleGrimtol.Project
         public Dictionary<string, Room> Exits { get; set; }
         public List<Item> Items { get; set; }
 
+        public Room()
+        {
+            Items = new List<Item>();
+        }
+
         void IRoom.UseItem(Item item)
         {
             throw new System.NotImplementedException();

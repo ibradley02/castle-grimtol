@@ -41,7 +41,6 @@ namespace CastleGrimtol.Project
             {
                 Description = "You are located in a canyon that exits ahead of you to the North and comes to a dead end farther south. There is a very large orange tree in front of you. The canyon is very orange. The ground is very orange. The dust is very orange. You would be blinded by the sheer vastness of orange if not for your highly calibrated and expensive orange sensors fitted to you by the M.A.R.S., but somehow surrounded by all this orange you find yourself feeling blue. You do not have a blue sensor so you disregard this feeling. ",
                 Name = "The Orange Canyon",
-                Items = new List<Item>(),
                 Exits = new Dictionary<string, Room>()
             };
             Room room2 = new Room()
@@ -62,7 +61,6 @@ namespace CastleGrimtol.Project
             {
                 Description = "You travel into a basin with orange Mountains to your East and West. The orange here has a faint musty smell of orange. You notice the orange sand of the desert has become a chalky orange salt. This indicates there was likely water here at some point. Collecting a sample may prove valuable to the C.A.W.I.A.E. The only route is back the way you came.",
                 Name = "The Orange Lake",
-                Items = new List<Item>(),
                 Exits = new Dictionary<string, Room>()
             };
 
@@ -70,7 +68,6 @@ namespace CastleGrimtol.Project
             {
                 Description = "After many unremarkable hours crossing the desert the orange around you starts to break, lifting itself to the heavens, forming into a grand orange Mountain. You notice a nice looking rock. Traversing this mountain will likely take several sols and has no guarantee of success.",
                 Name = "The Orange Mountain",
-                Items = new List<Item>(),
                 Exits = new Dictionary<string, Room>()
             };
 
@@ -180,20 +177,29 @@ namespace CastleGrimtol.Project
         }
         public void TakeItem(string itemName)
         {
-            Item item = CurrentRoom.Items.FirstOrDefault(Item => Item.Name.ToLower() == itemName);
-
-            if (item != null)
+            if (CurrentRoom.Items.Count > 0)
             {
-                CurrentRoom.Items.Remove(item);
-                CurrentPlayer.Inventory.Add(item);
-                Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                Console.WriteLine($"\n{item.Name} is placed into the rover's storage.");
-                Console.ResetColor();
+                Item item = CurrentRoom.Items.FirstOrDefault(Item => Item.Name.ToLower() == itemName);
+
+                if (item != null)
+                {
+                    CurrentRoom.Items.Remove(item);
+                    CurrentPlayer.Inventory.Add(item);
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                    Console.WriteLine($"\n{item.Name} is placed into the rover's storage.");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\nError: Does Not Compute.");
+                    Console.ResetColor();
+                }
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("\nError: Does Not Compute.");
+                Console.WriteLine("\nError: No item matching that description");
                 Console.ResetColor();
             }
         }
