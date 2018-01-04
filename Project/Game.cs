@@ -91,15 +91,15 @@ namespace CastleGrimtol.Project
             room2.Exits.Add("west", room4);
             room2.Exits.Add("north", room5);
             room3.Exits.Add("west", room2);
-            room3.Exits.Add("north", room7);
-            room4.Exits.Add("north", room6);
+            // room3.Exits.Add("north", room7);
+            // room4.Exits.Add("north", room6);
             room4.Exits.Add("east", room2);
             room5.Exits.Add("south", room2);
             room5.Exits.Add("north", room8);
-            room6.Exits.Add("south", room4);
-            room6.Exits.Add("east", room8);
-            room7.Exits.Add("south", room3);
-            room7.Exits.Add("west", room8);
+            // room6.Exits.Add("south", room4);
+            // room6.Exits.Add("east", room8);
+            // room7.Exits.Add("south", room3);
+            // room7.Exits.Add("west", room8);
 
             CurrentRoom = room1;
         }
