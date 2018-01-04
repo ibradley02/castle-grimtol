@@ -6,11 +6,11 @@ namespace CastleGrimtol.Project
     {
         public int Score { get; set; }
         public int Time { get; set; }
-        
+
         public List<Item> Inventory { get; set; }
         public Player()
         {
-            Time = 5;
+            Time = 6;
             Inventory = new List<Item>();
         }
     }
