@@ -334,7 +334,7 @@ Quit
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("\nYou have run out of time and been decommisioned. Type reset to play again. Quit to exit.");
+                Console.WriteLine("\nYou have run out of time. Type reset to play again. Quit to exit.");
                 Console.ResetColor();
             }
         }
