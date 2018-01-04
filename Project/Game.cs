@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CastleGrimtol.Project
@@ -14,7 +15,16 @@ namespace CastleGrimtol.Project
 
         public void Reset()
         {
-            Playing = true;
+            Console.WriteLine("Would you like to play again? (Y/N)");
+            var answer = Console.ReadLine();
+            if (answer == "y" || answer == "yes")
+            {
+                Playing = true;
+            }
+            else
+            {
+                Playing = false;
+            }
         }
         public void Setup()
         {
@@ -27,6 +37,7 @@ namespace CastleGrimtol.Project
             {
                 Description = "You are located in a canyon that exits ahead of you to the North and comes to a dead end farther south. There is a very large orange tree in front of you. The canyon is very orange. The ground is very orange. The dust is very orange. You would be blinded by the sheer vastness of orange if not for your highly calibrated and expensive orange sensors fitted to you by the M.A.R.S., but somehow surrounded by all this orange you find yourself feeling blue. You do not have a blue sensor so you disregard this feeling. ",
                 Name = "The Orange Canyon",
+                Items = new List<Item>(),
                 Exits = new Dictionary<string, Room>()
             };
             Room room2 = new Room()
@@ -55,6 +66,7 @@ namespace CastleGrimtol.Project
             {
                 Description = "After many unremarkable hours crossing the desert the orange around you starts to break, lifting itself to the heavens, forming into a grand orange Mountain. You notice a nice looking rock. Traversing this mountain will likely take several sols and has no guarantee of success.",
                 Name = "The Orange Mountain",
+                Items = new List<Item>(),
                 Exits = new Dictionary<string, Room>()
             };
 
@@ -74,8 +86,8 @@ namespace CastleGrimtol.Project
 
             Room room8 = new Room()
             {
-                Description = "As the grand orange door swings open on its hinges you are basked in the glow of robotic reverence for your heroic actions documenting mars. Okay, well not really, however you do find the rendezvous point behind the doors and the M.A.R.S. rates your mission effectiveness at 97% which is actually quite bad for a robot, but hey at least you won't be decommissioned today. Type Reset to play again.",
-                Name = "The Orange Door",
+                Description = "As the grand orange door swings open on its hinges you are basked in the glow of robotic reverence for your heroic actions documenting mars. Okay, well not really, however you do find the rendezvous point behind the doors and a small metal box for your mars samples.",
+                Name = "The Orange End",
                 Exits = new Dictionary<string, Room>()
             };
 
@@ -137,11 +149,33 @@ namespace CastleGrimtol.Project
 
         public void UseItem(string itemName)
         {
-            throw new System.NotImplementedException();
+            Item item = CurrentPlayer.Inventory.Find(Item => Item.Name.ToLower() == itemName);
+            if (item.Name.ToLower() == "tree" && CurrentRoom.Name == "The Orange End")
+            {
+                WordWrap("\nThe box fizzes for a second after accepting your input. A small card prints out of the box that reads \"Congratulations! You will not be decommisioned today! Your efficiency has been rated at 99% for this task. That is very slightly above average for a robot.\"");
+                Reset();
+            }
+            else if (item.Name.ToLower() == "salt" && CurrentRoom.Name == "The Orange End")
+            {
+                WordWrap("\nThe box fizzes for a second after accepting your input. A small card prints out of the box that reads \"Congratulations! You will not be decommisioned today! Your efficiency has been rated at 98% for this task. That is average for a robot.\"");
+                Reset();
+
+            }
+            else if (item.Name.ToLower() == "rock" && CurrentRoom.Name == "The Orange End")
+            {
+                WordWrap("\nThe box fizzes for a second after accepting your input. A small card prints out of the box that reads \"Congratulations! You will not be decommisioned today! Your efficiency has been rated at 97% for this task. That is below average for a robot. You should feel bad.\"");
+                Reset();
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nError: Does Not Compute.");
+                Console.ResetColor();
+            }
         }
         public void TakeItem(string itemName)
         {
-            Item item = CurrentRoom.Items.Find(Item => Item.Name.ToLower() == itemName);
+            Item item = CurrentRoom.Items.FirstOrDefault(Item => Item.Name.ToLower() == itemName);
 
             if (item != null)
             {
@@ -149,6 +183,12 @@ namespace CastleGrimtol.Project
                 CurrentPlayer.Inventory.Add(item);
                 Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 Console.WriteLine($"\n{item.Name} is placed into the rover's storage.");
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nError: Does Not Compute.");
                 Console.ResetColor();
             }
         }
@@ -228,6 +268,10 @@ namespace CastleGrimtol.Project
                 else if (command == "take")
                 {
                     TakeItem(option);
+                }
+                else if (command == "use")
+                {
+                    UseItem(option);
                 }
                 else
                 {

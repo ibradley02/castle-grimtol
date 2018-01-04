@@ -14,11 +14,11 @@ namespace CastleGrimtol
             Console.SetBufferSize(400, 600);
             Console.SetWindowSize(80, 40);
             var game = new Game();
+            game.Playing = true;
             game.Setup();
             bool FirstTime = true;
-            bool playing = true;
 
-            while (playing)
+            while (game.Playing == true)
             {
                 if(FirstTime){
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -35,14 +35,14 @@ namespace CastleGrimtol
                 if (Input == "reset")
                 {
                     Console.Clear();
-                    playing = true;
+                    game.Playing = true;
                     FirstTime = true;
                     game.Setup();
                     continue;
                 }
                 else if (Input == "q" || Input == "quit")
                 {
-                    playing = false;
+                    game.Playing = false;
                     continue;
                 }
                 else
